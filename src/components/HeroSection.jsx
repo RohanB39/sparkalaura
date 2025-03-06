@@ -131,7 +131,7 @@ const HeroSection = () => {
         </div>
         <div className="md:hidden mt-[-10%] w-fit py-2 px-6 bg-yellow-500/60 backdrop-blur-sm border-white/30 shadow-lg text-black">
 
-              <Link to="/viewAllCollection">
+              <Link to={"/viewAllCollection"}>
                 <button className="text-sm md:text-base cursor-pointer tracking-wide font-normal flex items-center gap-2">
                   What we sell
                   <span className="border rounded-full p-2 bg-white text-green-900 hover:bg-black cursor-pointer hover:text-white">

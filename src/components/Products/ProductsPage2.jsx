@@ -66,11 +66,13 @@ const ProductsPage2 = () => {
                     </div>
                 ))}
             </div>
+            <Link to={"/viewAllCollection"}>
             <div className="flex justify-center items-center mt-2">
                 <div className="bg-gray-500 px-10 py-3 md:px-15 text-[11px]">
                     View All Candles
                 </div>
             </div>
+            </Link>
 
         </div>
     );
