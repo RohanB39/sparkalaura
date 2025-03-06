@@ -251,48 +251,49 @@ const ProductsPage1 = () => {
                 </div>
             </section >
             <div
-                ref={scrollRef}
-                className={`flex gap-6 transition-all duration-500 overflow-x-auto scrollbar-hide p-6 custom-scrollbar`}
-                onScroll={() => setScrollPosition(scrollRef.current?.scrollLeft || 0)}
-            >
-                {products.map((product, index) => (
-                    <div
-                        key={product.id}
-                        className={`bg-white shadow-lg overflow-hidden transition-transform duration-300 ${products.length === 1 ? "w-full" :
-                            products.length === 2 ? "w-1/2" :
-                                products.length === 3 ? "w-1/3" :
-                                    "w-80 min-w-[320px]"
-                            }`}
-                    >
-                        <div className="relative group">
-                            <img
-                                src={product.imageUrl}
-                                alt={product.name}
-                                className="w-full cursor-pointer h-56 object-cover transition-transform duration-300 group-hover:scale-105 font-goudy"
-                                onError={(e) => {
-                                    e.target.src = "https://images.unsplash.com/photo-1590479773265-7464e5d48118";
-                                }}
-                                loading="lazy"
-                            />
-                        </div>
-                        <div className="p-4">
-                            <div className="flex items-center justify-between mb-2">
-                                <h3
-                                    className="text-[15px] text-gray-800 cursor-pointer hover:underline"
-                                    onClick={() => navigate(`/product/${product.id}`, { state: { product } })}
-                                >{product.name}</h3>
-                                <MdVerifiedUser className="text-green-500 w-5 h-5" />
-                            </div>
-                            <div className="flex flex-col mb-2">
-                                <h3 className="text-[10px] text-gray-800">Sparkle Aura</h3>
-                                <span className="text-sm text-gray-900">
-                                    Rs. {(product.price * (1 - product.discount / 100)).toFixed(2)}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+    ref={scrollRef}
+    className="grid grid-cols-2 gap-4 md:flex md:gap-6 transition-all duration-500 md:overflow-x-auto scrollbar-hide p-6 custom-scrollbar"
+    onScroll={() => setScrollPosition(scrollRef.current?.scrollLeft || 0)}
+>
+    {products.map((product, index) => (
+        <div
+            key={product.id}
+            className="bg-white shadow-lg overflow-hidden transition-transform duration-300 w-full"
+        >
+            <div className="relative group">
+                <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className="w-full cursor-pointer h-44 object-cover transition-transform duration-300 group-hover:scale-105 font-goudy"
+                    onError={(e) => {
+                        e.target.src = "https://images.unsplash.com/photo-1590479773265-7464e5d48118";
+                    }}
+                    loading="lazy"
+                />
             </div>
+            <div className="p-4">
+                <div className="flex items-center justify-between mb-2">
+                    <h3
+                        className="text-[15px] text-gray-800 cursor-pointer hover:underline"
+                        onClick={() => navigate(`/product/${product.id}`, { state: { product } })}
+                    >
+                        {product.name}
+                    </h3>
+                    <MdVerifiedUser className="text-green-500 w-5 h-5" />
+                </div>
+                <div className="flex flex-col mb-2">
+                    <h3 className="text-[10px] text-gray-800">Sparkle Aura</h3>
+                    <span className="text-sm text-gray-900">
+                        Rs. {(product.price * (1 - product.discount / 100)).toFixed(2)}
+                    </span>
+                </div>
+            </div>
+        </div>
+    ))}
+</div>
+
+
+
         </div >
     );
 };

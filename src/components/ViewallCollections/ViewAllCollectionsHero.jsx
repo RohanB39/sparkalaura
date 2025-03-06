@@ -99,27 +99,9 @@ const ViewAllCollectionsHero = () => {
                 ))}
               </div>
               <div className="mt-4 w-fit py-2 px-6 bg-yellow-500/60 backdrop-blur-sm border-white/30 shadow-lg text-black">
-                <Link to="/greenWall">
                   <button className="text-sm md:text-base cursor-pointer tracking-wide font-normal flex items-center gap-2">
-                    What we sell
-                    <span className="border rounded-full p-2 bg-white text-green-900 hover:bg-black cursor-pointer hover:text-white">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="size-4"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
-                        />
-                      </svg>
-                    </span>
+                    Out All Collections
                   </button>
-                </Link>
               </div>
             </div>
             <div className="hidden md:absolute md:right-10 bottom-24 w-full h-[10vh] md:w-[30%] p-4 bg-black/20 backdrop-blur-sm border-white/30 shadow-lg text-white overflow-hidden">
