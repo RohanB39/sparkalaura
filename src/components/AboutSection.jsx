@@ -38,7 +38,7 @@ const AboutSection = () => {
       <div className="w-[90%] max-w-[1224px] m-auto mb-12">
         <div className="aboutHeader pt-12" ref={headerRef}>
           <div className="md:flex justify-between items-end mb-6">
-            <p className="text-[20px] md:text-[34px] font-notmal leading-tight">
+            <p className="text-[15px] md:text-[34px] font-notmal leading-tight">
             Flames that flicker, stories that shine, <br/> moments that last.
             </p>
           </div>
@@ -54,10 +54,10 @@ const AboutSection = () => {
                 ref={(el) => (cardsRef.current[index] = el)}
               >
                 <span>{item.icon}</span>
-                <h5 className="text-[16px] text-green-950 font-medium mt-4">
+                <h5 className="text-[14px] text-green-950 font-medium mt-4">
                   {item.title}
                 </h5>
-                <p className="text-[14px] mt-2 font-normal whitespace-normal w-full">
+                <p className="text-[12px] mt-2 font-normal whitespace-normal w-full">
                   {item.text}
                 </p>
               </div>

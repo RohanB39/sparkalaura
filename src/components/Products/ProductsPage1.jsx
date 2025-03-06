@@ -238,18 +238,6 @@ const ProductsPage1 = () => {
     return (
         <div className="mb-3">
             <section className="rounded-lg">
-                {/* <div className="w-full flex justify-around md:items-center gap-y-4 flex-col md:flex-row p-5 bg-amber-200 mt-5">
-                    <div>
-                        <h2 className="text-2xl">
-                            Light up your space with our Bestsellers 🕯️
-                        </h2>
-                    </div>
-                    <Link to="/viewAllCollection">
-                        <button className="bg-yellow-500 hover:bg-yellow-600 text-black py-3 px-6 transition-all duration-300 shadow-md hover:shadow-lg text-sm md:text-base cursor-pointer">
-                            View All Collection
-                        </button>
-                    </Link>
-                </div> */}
                 <ButtonsSection />
             </section >
             <div
