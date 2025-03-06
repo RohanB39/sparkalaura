@@ -14,6 +14,12 @@ const HeroSection = () => {
     "Pure scents & endless serenity—Sparkle Aura.",
     "Indulge in aroma, embrace the glow, feel the Sparkle Aura.",
   ];
+
+  const boxTexts = [
+    "Transforming urban spaces into thriving green landscapes.",
+    "Nature-inspired solutions for a sustainable future.",
+    "Bringing eco-friendly innovation to every project.",
+  ];
   
   useEffect(() => {
     if (
@@ -115,6 +121,11 @@ const HeroSection = () => {
                 </button>
               </Link>
             </div>
+          </div>
+          <div className="hidden md:absolute md:right-10 bottom-24 w-full h-[10vh] md:w-[30%] p-4 bg-black/20 backdrop-blur-sm border-white/30 shadow-lg text-white overflow-hidden">
+            <p ref={boxTextRef} className="text-sm font-normal">
+              Transforming urban spaces into thriving green landscapes.
+            </p>
           </div>
         </div>
       </div>
