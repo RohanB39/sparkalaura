@@ -33,74 +33,66 @@ const Collection1 = () => {
     };
 
     return (
-        <div className="mb-3 p-6">
-            <section className="w-full flex flex-col md:flex-row md:items-center justify-center gap-y-4">
-            <div className="flex flex-col items-center w-full">
-                <h2 className="text-lg lg:text-2xl">Valentine's Day Collection 💝</h2>
-            </div>
+        <div className="mb-3 mt-5">
+            <section className="w-full flex flex-col md:flex-row md:items-center justify-center gap-y-4 p-5">
+                <div className="flex flex-col items-center w-full">
+                    <h2 className="text-[14px] lg:text-2xl">Soft flickers, warm glow—each candle holds a story of love, peace, and memories. <span className="text-red-400">Impress your valantine with our valantine day's collection</span></h2>
+                </div>
                 <div className="w-full flex flex-col md:flex-row md:items-center justify-center gap-y-4">
                     <div className="flex gap-4">
                         <select
                             onChange={(e) => handleSort(e.target.value)}
                             value={sortOrder}
-                            className="p-2 border border-gray-300 rounded-md text-sm"
+                            className="px-5 py-2 border border-gray-300 text-sm"
                         >
                             <option value="">Sort By Price</option>
                             <option value="lowToHigh">Low to High</option>
                             <option value="highToLow">High to Low</option>
                         </select>
-
-                        {/* Price Range Filter */}
-                        <div className="flex items-center gap-2">
-                            <input
-                                type="range"
-                                min="199"
-                                max="1300"
-                                step="50"
-                                value={maxPrice}
-                                onChange={(e) => handleFilter(e.target.value)}
-                                className="cursor-pointer bg-amber-200"
-                            />
-                            <span className="text-sm text-gray-700">{maxPrice} Rs</span>
-                        </div>
                     </div>
                 </div>
             </section>
 
-            <motion.div className="flex gap-6 overflow-x-auto scrollbar-hide p-6 custom-scrollbar">
-                {products.length > 0 ? (
-                    products.map((product) => (
-                        <motion.div key={product.id} className="bg-white shadow-lg p-4 w-72 min-w-[280px]">
-                            <div className="relative group">
-                                <img
-                                    src={product.imageUrl}
-                                    alt={product.name}
-                                    className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
-                                    onError={(e) => {
-                                        e.target.src = "https://via.placeholder.com/280";
-                                    }}
-                                    loading="lazy"
-                                />
+            <div
+                className="grid grid-cols-2 gap-4 md:grid-cols-5 transition-all duration-500 md:overflow-x-auto scrollbar-hide p-6"
+                onScroll={() => setScrollPosition(scrollRef.current?.scrollLeft || 0)}
+            >
+                {products.map((product, index) => (
+                    <div
+                        key={product.id}
+                        className="bg-white shadow-lg overflow-hidden transition-transform duration-300 w-full"
+                    >
+                        <div className="relative group">
+                            <img
+                                src={product.imageUrl}
+                                alt={product.name}
+                                className="w-full cursor-pointer h-44 object-cover transition-transform duration-300 group-hover:scale-105 font-goudy"
+                                onError={(e) => {
+                                    e.target.src = "https://images.unsplash.com/photo-1590479773265-7464e5d48118";
+                                }}
+                                loading="lazy"
+                            />
+                        </div>
+                        <div className="p-2">
+                            <div className="flex items-center justify-between mb-2">
+                                <h3
+                                    className="text-[12px] text-gray-800 cursor-pointer hover:underline"
+                                    onClick={() => navigate(`/product/${product.id}`, { state: { product } })}
+                                >
+                                    {product.name}
+                                </h3>
+                                {/* <MdVerifiedUser className="text-green-500 w-5 h-5" /> */}
                             </div>
-
-                            <div className="mt-3">
-                                <div className="flex items-center justify-between">
-                                    <h3 className="text-[15px] text-gray-800">{product.name}</h3>
-                                    <MdVerifiedUser className="text-green-500 w-5 h-5" />
-                                </div>
-
-                                <div className="flex items-center justify-between mt-2">
-                                    <span className="text-lg font-bold text-gray-900">
-                                        ₹{(product.price * (1 - product.discount / 100)).toFixed(2)}
-                                    </span>
-                                </div>
+                            <div className="flex flex-col mb-2">
+                                <h3 className="text-[10px] text-gray-800">Sparkle Aura</h3>
+                                <span className="text-sm text-gray-900">
+                                    Rs. {(product.price * (1 - product.discount / 100)).toFixed(2)}
+                                </span>
                             </div>
-                        </motion.div>
-                    ))
-                ) : (
-                    <p className="text-center text-gray-600">No products available in this range.</p>
-                )}
-            </motion.div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

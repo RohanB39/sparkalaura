@@ -22,13 +22,15 @@ const ViewAllCollectionMain = () => {
         <ViewAllCollectionsHero />
       </div>
       <div>
-        <Collection1 />
+        <Collection3 />
       </div>
+      <hr className="bg-yellow-100 h-1 rounded-full shadow-md border-none" />
       <div>
         <Collection2 />
       </div>
+      <hr className="bg-blue-200 h-1 rounded-full shadow-md border-none" />
       <div>
-        <Collection3 />
+        <Collection1 />
       </div>
     </div>
   );

@@ -108,7 +108,7 @@ const PottedGardenDevelopment = () => {
         </div>
       </div>
 
-      <div className="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
+      <div className="container mt-4 mx-auto p-2 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 cursor-pointer">
         {products.map((product) => (
           <div
             key={product.id}
@@ -118,49 +118,33 @@ const PottedGardenDevelopment = () => {
               <img
                 src={product.imageUrl}
                 alt={product.name}
-                className="w-full h-64 object-cover"
+                className="w-full h-40 md:h-64 object-cover"
               />
               {product.discount > 0 && (
-                <div className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full text-sm">
+                <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-[10px]">
                   {product.discount}% OFF
                 </div>
               )}
             </div>
 
             <div className="p-4">
-              <h3 className="text-lg font-semibold mb-2 cursor-pointer">{product.name}</h3>
-              <p className="text-gray-600 text-sm mb-4">{product.description}</p>
-
-              <div className="flex items-center justify-between mb-4">
+              <h3 className="text-[12px] mb-2 cursor-pointer">{product.name}</h3>
+              <div className="flex items-center justify-between">
                 <div>
                   {product.discount > 0 ? (
                     <>
-                      <span className="text-2xl">
+                      <span className="text-[12px]">
                         ₹{(product.price - calculateDiscount(product.price, product.discount)).toFixed(2)}
                       </span>
-                      <span className="ml-2 text-gray-400 line-through">₹{product.price}</span>
+                      <span className="ml-2 text-gray-400 line-through text-[10px]">₹{product.price}</span>
                     </>
                   ) : (
-                    <span className="text-2xl font-bold">₹{product.price}</span>
+                    <span className="text-[10px]">₹{product.price}</span>
                   )}
                 </div>
               </div>
-
-              <div className="mb-4">
-                <span className="text-sm text-gray-600">Colors:</span>
-                <div className="flex space-x-2 mt-1">
-                  {product.colors.map((color, index) => (
-                    <div
-                      key={index}
-                      className="w-6 h-6 rounded-full border border-gray-200"
-                      style={{ backgroundColor: color.toLowerCase() }}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex space-x-2">
-                <button className="flex-1 bg-yellow-600 text-white py-2 hover:bg-yellow-700 cursor-pointer transition-colors duration-300">
+              <div className="flex">
+                <button className=" bg-amber-100 text-[10px] mt-1 text-black cursor-pointer transition-colors duration-300 py-1 px-10 shadow">
                   Add to Cart
                 </button>
               </div>
