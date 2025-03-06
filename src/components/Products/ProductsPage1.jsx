@@ -264,7 +264,7 @@ const ProductsPage1 = () => {
                 <img
                     src={product.imageUrl}
                     alt={product.name}
-                    className="w-full text-[10px] cursor-pointer h-44 object-cover transition-transform duration-300 group-hover:scale-105 font-goudy"
+                    className="w-full cursor-pointer h-44 object-cover transition-transform duration-300 group-hover:scale-105 font-goudy"
                     onError={(e) => {
                         e.target.src = "https://images.unsplash.com/photo-1590479773265-7464e5d48118";
                     }}
@@ -274,7 +274,7 @@ const ProductsPage1 = () => {
             <div className="p-4">
                 <div className="flex items-center justify-between mb-2">
                     <h3
-                        className="text-[15px] text-gray-800 cursor-pointer hover:underline"
+                        className="text-[10px] text-gray-800 cursor-pointer hover:underline"
                         onClick={() => navigate(`/product/${product.id}`, { state: { product } })}
                     >
                         {product.name}
