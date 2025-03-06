@@ -20,7 +20,7 @@ const HeroSection = () => {
     "Nature-inspired solutions for a sustainable future.",
     "Bringing eco-friendly innovation to every project.",
   ];
-  
+
   useEffect(() => {
     if (
       !heroBgRef.current ||
@@ -98,7 +98,8 @@ const HeroSection = () => {
 
               ))}
             </div>
-            <div className="mt-4 w-fit py-2 px-6 bg-yellow-500/60 backdrop-blur-sm border-white/30 shadow-lg text-black">
+            <div className="hidden md:block mt-4 w-fit py-2 px-6 bg-yellow-500/60 backdrop-blur-sm border-white/30 shadow-lg text-black">
+
               <Link to="/viewAllCollection">
                 <button className="text-sm md:text-base cursor-pointer tracking-wide font-normal flex items-center gap-2">
                   What we sell
@@ -128,6 +129,30 @@ const HeroSection = () => {
             </p>
           </div>
         </div>
+        <div className="md:hidden mt-[-10%] w-fit py-2 px-6 bg-yellow-500/60 backdrop-blur-sm border-white/30 shadow-lg text-black">
+
+              <Link to="/viewAllCollection">
+                <button className="text-sm md:text-base cursor-pointer tracking-wide font-normal flex items-center gap-2">
+                  What we sell
+                  <span className="border rounded-full p-2 bg-white text-green-900 hover:bg-black cursor-pointer hover:text-white">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="size-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </Link>
+            </div>
       </div>
     </div>
   );
