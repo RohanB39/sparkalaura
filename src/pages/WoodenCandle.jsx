@@ -98,7 +98,6 @@ const WoodenCandle = () => {
         <>
         <div className="sticky top-0 z-50 bg-white shadow-md">
               <Navbar />
-              
             </div>
           <div className="heroBg2 relative h-[30vh] lg:h-[50vh]">
             <div className="h-[70%] flex flex-col items-center justify-center text-center px-4 relative z-10">

@@ -20,6 +20,7 @@ import RefundPolicy from "./pages/PolicyPages/RefundPolicy";
 import Cart from "./pages/Cart/Cart";
 import "@fontsource/work-sans";
 import WoodenCandle from "./pages/WoodenCandle";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/woodenCandle" element={<WoodenCandle />} />
       </Routes>
+      <WhatsAppButton />
       <Footer />
     </Router>
   );
