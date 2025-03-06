@@ -279,7 +279,7 @@ const ProductsPage1 = () => {
                     >
                         {product.name}
                     </h3>
-                    <MdVerifiedUser className="text-green-500 w-5 h-5" />
+                    {/* <MdVerifiedUser className="text-green-500 w-5 h-5" /> */}
                 </div>
                 <div className="flex flex-col mb-2">
                     <h3 className="text-[10px] text-gray-800">Sparkle Aura</h3>
