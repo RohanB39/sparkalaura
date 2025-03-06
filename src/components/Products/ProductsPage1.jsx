@@ -264,7 +264,7 @@ const ProductsPage1 = () => {
                 <img
                     src={product.imageUrl}
                     alt={product.name}
-                    className="w-full text-sm cursor-pointer h-44 object-cover transition-transform duration-300 group-hover:scale-105 font-goudy"
+                    className="w-full text-[10px] cursor-pointer h-44 object-cover transition-transform duration-300 group-hover:scale-105 font-goudy"
                     onError={(e) => {
                         e.target.src = "https://images.unsplash.com/photo-1590479773265-7464e5d48118";
                     }}
