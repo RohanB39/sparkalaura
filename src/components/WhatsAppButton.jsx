@@ -8,11 +8,10 @@ const WhatsAppButton = () => {
 
   return (
     <div 
-      className="fixed bottom-4 right-4 flex flex-col items-center z-50"
+      className="fixed bottom-4 right-0 flex flex-col items-center z-50"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Text Appears on Hover */}
       <div
         className={`bg-black text-white text-sm px-3 py-1 rounded-lg mb-2 transition-opacity duration-300 ${
           isHovered ? "opacity-100 scale-100" : "opacity-0 scale-90"
@@ -20,8 +19,6 @@ const WhatsAppButton = () => {
       >
         Let's Connect
       </div>
-
-      {/* WhatsApp Icon */}
       <a
         href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
         target="_blank"
