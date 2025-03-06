@@ -271,7 +271,7 @@ const ProductsPage1 = () => {
                     loading="lazy"
                 />
             </div>
-            <div className="p-4">
+            <div className="p-2">
                 <div className="flex items-center justify-between mb-2">
                     <h3
                         className="text-[12px] text-gray-800 cursor-pointer hover:underline"
