@@ -164,16 +164,13 @@ const SearchResults = () => {
   ];
 
   let exactMatches = [];
-  let partialMatches = [];
   let otherProducts = [];
 
   if (searchQuery) {
     products.forEach((product) => {
       const productName = product.name.toLowerCase();
       if (productName === searchQuery) {
-        exactMatches.push(product);
-      } else if (searchQuery.split(" ").some((word) => productName.includes(word))) {
-        partialMatches.push(product);
+        exactMatches.push(product); 
       } else {
         otherProducts.push(product);
       }
@@ -181,7 +178,7 @@ const SearchResults = () => {
   } else {
     otherProducts = products;
   }
-  const filteredProducts = [...exactMatches, ...partialMatches];
+  const filteredProducts = [...exactMatches];
 
   useEffect(() => {
     setLoading(true);
