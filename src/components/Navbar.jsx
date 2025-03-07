@@ -69,7 +69,7 @@ const Navbar = () => {
           <img
             src={NavLogo}
             alt="logo"
-            className="h-15 w-auto sm:h-24 md:h-28 lg:h-20 filter invert grayscale contrast-200 drop-shadow-lg transition duration-300 hover:scale-75"
+            className="h-18 w-auto sm:h-24 md:h-28 lg:h-20 filter invert grayscale contrast-200 drop-shadow-lg transition duration-300 hover:scale-75"
           />
         </Link>
 
@@ -220,7 +220,7 @@ const Navbar = () => {
           >
             <NavLink
               to="/login"
-              className="text-black py-1 px-8"
+              className="text-black px-8"
               onClick={() => setIsOpen(false)}
             >
               <span>
@@ -237,7 +237,7 @@ const Navbar = () => {
           >
             <NavLink
               to="/cart"
-              className="text-black py-1 px-8"
+              className="text-black px-8"
               onClick={() => setIsOpen(false)}
             >
               <span>
