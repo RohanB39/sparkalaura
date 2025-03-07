@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { Link } from "react-router-dom";
 import NavLogo from "../assets/Navlogo.png";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +17,7 @@ const Navbar = () => {
   const searchBarRef = useRef(null);
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -114,7 +116,14 @@ const Navbar = () => {
     "Eucalyptus Refreshing Candle",
     "Jasmine Floral Candle",
     "Winter Snow Candle",
-  ];
+    "Bar Wax-Candles",
+    "Mom's Gift Candles",
+    "Unique Design Candles",
+    "Teddy Candles",
+    "Girl's Dress Candle",
+    "Unique Candles",
+];
+
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -133,6 +142,14 @@ const Navbar = () => {
   const handleSelectSuggestion = (suggestion) => {
     setSearchTerm(suggestion);
     setFilteredSuggestions([]);
+    navigate(`/search?q=${suggestion}`);
+  };
+
+  const handleSearchSubmit = () => {
+    if (searchTerm.trim() !== "") {
+      navigate(`/search?q=${searchTerm}`);
+      setFilteredSuggestions([]);
+    }
   };
 
   return (
@@ -358,8 +375,8 @@ const Navbar = () => {
           <div
             ref={searchBarRef}
             className={`absolute left-0 right-0 top-0 bg-white flex flex-col p-3 transition-all duration-300 transform ${isSearchOpen
-                ? "opacity-100 scale-y-100"
-                : "opacity-0 scale-y-0 pointer-events-none"
+              ? "opacity-100 scale-y-100"
+              : "opacity-0 scale-y-0 pointer-events-none"
               }`}
           >
             {/* Search Input */}

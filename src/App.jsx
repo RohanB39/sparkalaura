@@ -21,6 +21,7 @@ import Cart from "./pages/Cart/Cart";
 import "@fontsource/work-sans";
 import WoodenCandle from "./pages/WoodenCandle";
 import WhatsAppButton from "./components/WhatsAppButton";
+import SearchResults from "./components/SearchResults";
 
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
         <Route path="/refundp" element={<RefundPolicy />} /> 
         <Route path="/cart" element={<Cart />} />
         <Route path="/woodenCandle" element={<WoodenCandle />} />
+        <Route path="/search" element={<SearchResults />} />
       </Routes>
       <WhatsAppButton />
       <Footer />
