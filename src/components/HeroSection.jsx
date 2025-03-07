@@ -13,7 +13,7 @@ const HeroSection = () => {
       </div>
 
       {/* Hero Section (Push it below navbar) */}
-      <div className="relative h-[45vh] flex items-end mt-[6rem]">
+      <div className="relative h-[45vh] flex items-end mt-[4rem]">
         {/* Background Video */}
         <video
           autoPlay
