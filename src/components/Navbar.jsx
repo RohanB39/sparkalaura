@@ -65,7 +65,7 @@ const Navbar = () => {
   return (
     <div className="relative text-white z-20 text-lg bg-white">
       <div className="w-[90%] m-auto max-w-[1224px] flex items-center justify-between sticky top-0">
-        <Link to="/">
+        <Link to="/"> 
           <img
             src={NavLogo}
             alt="logo"
