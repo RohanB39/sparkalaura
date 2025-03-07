@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SmallNav from "./SmallNav";
 import Navbar from "./Navbar";
 
@@ -22,27 +22,27 @@ const SearchResults = () => {
   ];
 
   // Prioritize matching results
- // Prioritize matching results
-let matchedResults = [];
-let otherResults = [];
+  // Prioritize matching results
+  let matchedResults = [];
+  let otherResults = [];
 
-if (searchQuery) {
-  const searchWords = searchQuery.toLowerCase().split(" "); // Split query into words
+  if (searchQuery) {
+    const searchWords = searchQuery.toLowerCase().split(" "); // Split query into words
 
-  productsData.forEach((product) => {
-    const productWords = product.name.toLowerCase().split(" "); // Split product name into words
-    if (searchWords.some((word) => productWords.includes(word))) {
-      matchedResults.push(product);
-    } else {
-      otherResults.push(product);
-    }
-  });
-} else {
-  // If no search query, show all products
-  matchedResults = productsData;
-}
+    productsData.forEach((product) => {
+      const productWords = product.name.toLowerCase().split(" "); // Split product name into words
+      if (searchWords.some((word) => productWords.includes(word))) {
+        matchedResults.push(product);
+      } else {
+        otherResults.push(product);
+      }
+    });
+  } else {
+    // If no search query, show all products
+    matchedResults = productsData;
+  }
 
-const sortedProducts = [...matchedResults, ...otherResults];
+  const sortedProducts = [...matchedResults, ...otherResults];
 
 
   // Simulate API loading effect
@@ -63,6 +63,11 @@ const sortedProducts = [...matchedResults, ...otherResults];
         <h2 className="text-md text-black bg-white py-3 px-5">
           Search Results for "<span className="text-yellow-500">{searchQuery}</span>"
         </h2>
+        <div className="flex items-center gap-2 text-sm text-gray-600 bg-white px-5 py-2">
+          <Link to="/" className="hover:underline text-black">Home</Link>
+          <span className="text-gray-400">/</span>
+          <span className="text-yellow-600">Search Results</span>
+        </div>
       </div>
 
       {/* ✅ Show Loading Animation */}
@@ -73,7 +78,7 @@ const sortedProducts = [...matchedResults, ...otherResults];
       ) : (
         <div
           ref={scrollRef}
-          className="grid grid-cols-2 gap-4 md:grid-cols-5 mt-48 transition-all duration-500 md:overflow-x-auto scrollbar-hide animate-fade-in"
+          className="grid grid-cols-2 gap-4 md:grid-cols-5 mt-56 transition-all duration-500 md:overflow-x-auto scrollbar-hide animate-fade-in"
           onScroll={() => setScrollPosition(scrollRef.current?.scrollLeft || 0)}
         >
           {sortedProducts.map((product) => (
