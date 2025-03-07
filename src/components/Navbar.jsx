@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
 import NavLogo from "../assets/Navlogo.png";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -131,7 +132,7 @@ const Navbar = () => {
 
   const handleSelectSuggestion = (suggestion) => {
     setSearchTerm(suggestion);
-    setFilteredSuggestions([]); // Hide suggestions after selection
+    setFilteredSuggestions([]);
   };
 
   return (
@@ -355,64 +356,77 @@ const Navbar = () => {
           </div>
 
           <div
-        ref={searchBarRef}
-        className={`absolute left-0 right-0 top-0 bg-white flex flex-col p-3 transition-all duration-300 transform ${
-          isSearchOpen
-            ? "opacity-100 scale-y-100"
-            : "opacity-0 scale-y-0 pointer-events-none"
-        }`}
-      >
-        {/* Search Input */}
-        <div className="flex items-center mt-2">
-          <input
-            type="text"
-            placeholder="Search by candle...🕯️"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="w-full px-4 py-2 border border-black outline-none text-black text-sm"
-          />
-          {/* Close Button */}
-          <button
-            onClick={() => {
-              setIsSearchOpen(false);
-              setSearchTerm("");
-              setFilteredSuggestions([]);
-            }}
-            className="ml-2 text-yellow-600 hover:text-black"
+            ref={searchBarRef}
+            className={`absolute left-0 right-0 top-0 bg-white flex flex-col p-3 transition-all duration-300 transform ${isSearchOpen
+                ? "opacity-100 scale-y-100"
+                : "opacity-0 scale-y-0 pointer-events-none"
+              }`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            {/* Search Input */}
+            <div className="flex items-center mt-2">
+              <input
+                type="text"
+                placeholder="Search by candle...🕯️"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                className="w-full px-4 py-2 border border-black outline-none text-black text-sm"
               />
-            </svg>
-          </button>
-        </div>
-        </div>
+              {/* Close Button */}
+              <button
+                onClick={() => {
+                  setIsSearchOpen(false);
+                  setSearchTerm("");
+                  setFilteredSuggestions([]);
+                }}
+                className="ml-2 text-yellow-600 hover:text-black"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
 
         </div>
       </div>
       {filteredSuggestions.length > 0 && (
-          <ul className="mt-2 bg-white border border-gray-300 rounded shadow-md">
+        <motion.ul
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+          className="mt-2 bg-white px-4 py-2 shadow-md rounded-md"
+        >
+          <p className="text-gray-400 px-2 text-sm underline mb-2">Suggestions:</p>
+
+          <AnimatePresence>
             {filteredSuggestions.map((suggestion, index) => (
-              <li
+              <motion.li
                 key={index}
-                className="p-2 hover:bg-gray-200 cursor-pointer text-black"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 10 }}
+                transition={{ duration: 0.2, delay: index * 0.05 }}
+                className="p-2 hover:bg-gray-200 cursor-pointer text-black text-sm"
                 onClick={() => handleSelectSuggestion(suggestion)}
               >
                 {suggestion}
-              </li>
+              </motion.li>
             ))}
-          </ul>
-        )}
+          </AnimatePresence>
+        </motion.ul>
+      )}
 
       {/* Mobile Navigation */}
       <div

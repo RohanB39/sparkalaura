@@ -6,12 +6,26 @@ const Footer = () => {
   return (
     <div className="bg-yellow-500 w-full h-auto">
       <div className="w-[90%] max-w-[1224px] m-auto p-4 gap-12 md:flex md:justify-between justify-items-start items-center">
-        <div className="md:basis-[30%] text-start md:text-center">
-          <img src={logo} alt="logo" className="h-35 filter invert grayscale contrast-200 drop-shadow-lg transition duration-300 hover:scale-75" />
-          <small className="text-sm font-normal text-black">
-            From Seed to Splendor, We Nurture Growth with Care and Passion.
-          </small>
+        <div className="md:basis-[30%] text-start md:text-center w-full flex justify-center">
+          <img src={logo} alt="logo" className="h-25 filter invert grayscale contrast-200 drop-shadow-lg transition duration-300 hover:scale-75" />
         </div>
+        <div className="w-full flex justify-center p-2">
+          <ul className="flex gap-6">
+            <li>
+              <Link to="/" className="text-red-900">Home</Link>
+            </li>
+            <li>
+              <Link to="/viewAllCollection" className="text-red-900">Shop</Link>
+            </li>
+            <li>
+              <Link to="/about" className="text-red-900">About</Link>
+            </li>
+            <li>
+              <Link to="/contact" className="text-red-900">Contact</Link>
+            </li>
+          </ul>
+        </div>
+
 
         {/* Contact Section */}
         <div className="md:basis-[30%] xl:basis-[30%]  mt-12 md:mt-0">
