@@ -8,22 +8,22 @@ const SmallNav = () => {
                 {/* Social Icons */}
                 <div className="flex gap-4 mb-2 md:mb-0">
                     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                        <FaFacebookF className="text-xl hover:text-gray-300 transition" />
+                        <FaFacebookF className="text-sm hover:text-gray-300 transition" />
                     </a>
                     <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                        <FaInstagram className="text-xl hover:text-gray-300 transition" />
+                        <FaInstagram className="text-sm hover:text-gray-300 transition" />
                     </a>
                     <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-                        <FaYoutube className="text-xl hover:text-gray-300 transition" />
+                        <FaYoutube className="text-sm hover:text-gray-300 transition" />
                     </a>
                     <a href="https://wa.me/your-number" target="_blank" rel="noopener noreferrer">
-                        <FaWhatsapp className="text-xl hover:text-gray-300 transition" />
+                        <FaWhatsapp className="text-sm hover:text-gray-300 transition" />
                     </a>
                 </div>
 
                 {/* Offer Message */}
-                <div className="text-sm md:text-base">
-                    <span>We're offering <span className="font-bold text-yellow-300">FREE SHIPPING</span> on all your orders! 🎉</span>
+                <div className="text-[10px] md:text-base">
+                    <span>We're offering <span className="text-yellow-300">FREE SHIPPING</span> on all your orders! 🎉</span>
                 </div>
             </div>
         </div>
