@@ -13,14 +13,14 @@ const HeroSection = () => {
       </div>
 
       {/* Hero Section (Push it below navbar) */}
-      <div className="relative h-[45vh] flex items-end mt-[5rem]">
+      <div className="relative h-[45vh] flex items-end mt-[6rem]">
         {/* Background Video */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute top-20 left-0 w-full h-full object-cover scale-100"
+          className="absolute top-15 left-0 w-full h-full object-cover scale-100"
         >
           <source src="/images/4.mp4" type="video/mp4" />
           Your browser does not support the video tag.
