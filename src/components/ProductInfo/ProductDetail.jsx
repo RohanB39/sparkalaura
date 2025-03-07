@@ -10,40 +10,15 @@ const ProductDetail = () => {
     const [quantity, setQuantity] = useState(1);
     const location = useLocation();
     const product = location.state?.product;
-
-    // State to track scroll direction
     const [showNavbar, setShowNavbar] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > lastScrollY) {
-                // Scrolling down -> Hide navbar
-                setShowNavbar(false);
-            } else {
-                // Scrolling up -> Show navbar
-                setShowNavbar(true);
-            }
-            setLastScrollY(window.scrollY);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [lastScrollY]);
-
     return (
         <>
             {/* Sticky Navbar with Animation */}
-            <div
-                className={`fixed top-0 left-0 w-full transition-transform duration-300 z-50 ${
-                    showNavbar ? "translate-y-0" : "-translate-y-full"
-                }`}
-            >
+            <div className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-md shadow-md">
                 <SmallNav />
                 <Navbar />
             </div>
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 mt-28">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 mt-20">
                 <div className="flex flex-col md:flex-row gap-8">
                     <div className="md:w-1/2 space-y-4">
                         <div className="aspect-w-3 aspect-h-4">
@@ -142,7 +117,7 @@ const ProductDetail = () => {
             </div>
             <div className="mt-10">
                 <Collection1 />
-                </div>
+            </div>
         </>
 
     );
