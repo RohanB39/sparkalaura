@@ -13,27 +13,37 @@ const SearchResults = () => {
 
   // Dummy data (Replace this with API fetch logic)
   const productsData = [
-    { id: "1", name: "Bar Wax-Candles", price: 299.99, imageUrl: "/ServiceImages/s1.webp", discount: 15 },
+    { id: "1", name: "Jar Wax-Candles", price: 299.99, imageUrl: "/ServiceImages/s1.webp", discount: 15 },
     { id: "2", name: "Mom's Gift Candles", price: 699.99, imageUrl: "/ServiceImages/s2.webp", discount: 10 },
     { id: "3", name: "Unique Design Candles", price: 1299.99, imageUrl: "/ServiceImages/s3.webp", discount: 12 },
-    { id: "4", name: "Teddy Candles", price: 199.99, imageUrl: "/ServiceImages/s4.webp", discount: 18 },
+    { id: "4", name: "Teddy Jar", price: 199.99, imageUrl: "/ServiceImages/s4.webp", discount: 18 },
     { id: "5", name: "Girl's Dress Candle", price: 199.99, imageUrl: "/ServiceImages/s5.webp", discount: 20 },
     { id: "6", name: "Unique Candles", price: 199.99, imageUrl: "/ServiceImages/s6.webp", discount: 43 },
   ];
 
   // Prioritize matching results
-  let matchedResults = [];
-  let otherResults = [];
+ // Prioritize matching results
+let matchedResults = [];
+let otherResults = [];
+
+if (searchQuery) {
+  const searchWords = searchQuery.toLowerCase().split(" "); // Split query into words
 
   productsData.forEach((product) => {
-    if (searchQuery && product.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+    const productWords = product.name.toLowerCase().split(" "); // Split product name into words
+    if (searchWords.some((word) => productWords.includes(word))) {
       matchedResults.push(product);
     } else {
       otherResults.push(product);
     }
   });
+} else {
+  // If no search query, show all products
+  matchedResults = productsData;
+}
 
-  const sortedProducts = [...matchedResults, ...otherResults];
+const sortedProducts = [...matchedResults, ...otherResults];
+
 
   // Simulate API loading effect
   useEffect(() => {
