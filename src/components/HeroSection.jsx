@@ -20,7 +20,7 @@ const HeroSection = () => {
           muted
           loop
           playsInline
-          className="absolute top-20 left-[-20px] w-full h-full object-cover scale-200"
+          className="absolute top-0 left-0 w-full h-full object-cover scale-100"
         >
           <source src="/images/4.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -29,7 +29,7 @@ const HeroSection = () => {
         {/* Button */}
         <div className="relative z-10 mb-5">
           <Link to="/viewAllCollection">
-            <button className="text-sm md:text-base px-3 py-3 font-semibold text-black rounded-lg shadow-md hover:bg-black hover:text-white transition duration-300 flex items-center gap-2">
+            <button className="text-sm md:text-base px-3 py-3 text-white rounded-lg shadow-md hover:bg-black hover:text-white transition duration-300 flex items-center gap-2">
               What we sell
               <span className="border rounded-full p-1 bg-yellow-100 text-green-900 hover:bg-black hover:text-white transition duration-300">
                 <svg
