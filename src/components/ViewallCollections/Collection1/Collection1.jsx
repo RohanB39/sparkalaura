@@ -39,11 +39,11 @@ const Collection1 = () => {
                     <h2 className="text-[14px] lg:text-2xl">Soft flickers, warm glow—each candle holds a story of love, peace, and memories. <span className="text-red-400">Impress your valantine with our valantine day's collection</span></h2>
                 </div>
                 <div className="w-full flex flex-col md:flex-row md:items-center justify-center gap-y-4">
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 w-full">
                         <select
                             onChange={(e) => handleSort(e.target.value)}
                             value={sortOrder}
-                            className="px-5 py-2 border border-gray-300 text-sm"
+                            className="px-5 w-full outline-none py-2 border border-gray-300 text-sm"
                         >
                             <option value="">Sort By Price</option>
                             <option value="lowToHigh">Low to High</option>

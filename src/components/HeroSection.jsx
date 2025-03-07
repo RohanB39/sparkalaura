@@ -69,23 +69,28 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div ref={heroBgRef} className="heroBg relative h-screen md:h-[100vh] overflow-hidden">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover object-center lg:h-[160%] lg:top-[-60%]"
-      >
-        <source src="/images/3.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+    <div className="relative overflow-hidden">
+      {/* ✅ Fixed Navbar */}
+      <div className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-md shadow-md">
+        <SmallNav />
+        <Navbar />
+      </div>
 
-      <div className="absolute inset-0">
-        <SmallNav className="relative z-10" />
-        <Navbar className="relative z-10" />
-        <div className="relative z-10 text-yellow-100 font-bold flex items-center h-[70vh] md:h-full">
-          <div className="w-[90%] max-w-[1224px] m-auto">
+      {/* ✅ Hero Section with Padding to Prevent Overlap */}
+      <div ref={heroBgRef} className="pt-24">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute top-[5%] left-0 w-full h-full object-cover object-center lg:h-[160%] lg:top-0"
+        >
+          <source src="/images/4.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <div className="relative z-10 text-yellow-100 font-bold flex items-center min-h-screen">
+          <div className="w-[90%] max-w-[1224px] ml-10 mt-60">
             <div className="relative h-[130px] md:h-[120px] overflow-hidden">
               {texts.map((text, index) => (
                 <p
@@ -95,11 +100,9 @@ const HeroSection = () => {
                 >
                   {text}
                 </p>
-
               ))}
             </div>
-            <div className="hidden md:block mt-4 w-fit py-2 px-6 bg-yellow-500/60 backdrop-blur-sm border-white/30 shadow-lg text-black">
-
+            <div className="md:block mt-4 w-fit py-2 px-6 bg-yellow-500/60 backdrop-blur-sm border-white/30 shadow-lg text-black">
               <Link to="/viewAllCollection">
                 <button className="text-sm md:text-base cursor-pointer tracking-wide font-normal flex items-center gap-2">
                   What we sell
@@ -129,30 +132,6 @@ const HeroSection = () => {
             </p>
           </div>
         </div>
-        <div className="md:hidden mt-[-10%] w-fit py-2 px-6 bg-yellow-500/60 backdrop-blur-sm border-white/30 shadow-lg text-black">
-
-              <Link to={"/viewAllCollection"}>
-                <button className="text-sm md:text-base cursor-pointer tracking-wide font-normal flex items-center gap-2">
-                  What we sell
-                  <span className="border rounded-full p-2 bg-white text-green-900 hover:bg-black cursor-pointer hover:text-white">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="size-4"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </Link>
-            </div>
       </div>
     </div>
   );
