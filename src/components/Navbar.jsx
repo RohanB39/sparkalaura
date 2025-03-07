@@ -363,7 +363,7 @@ const Navbar = () => {
         }`}
       >
         {/* Search Input */}
-        <div className="flex items-center pb-2">
+        <div className="flex items-center mt-2">
           <input
             type="text"
             placeholder="Search by candle...🕯️"
