@@ -11,6 +11,10 @@ const Navbar = () => {
   const dropdownRef = useRef(null);
   const [visible, setVisible] = useState(true);
   let lastScrollY = window.scrollY;
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const searchBarRef = useRef(null);
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +29,24 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (mobileNavRef.current && !mobileNavRef.current.contains(event.target)) {
+        setIsOpen(false); // Close menu
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -62,10 +84,79 @@ const Navbar = () => {
     }
   }, [isDropdownOpen]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
+        setIsSearchOpen(false);
+      }
+    };
+
+    if (isSearchOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSearchOpen]);
+
+  const candleSuggestions = [
+    "Vanilla Scented Candle",
+    "Lavender Relaxing Candle",
+    "Rose Aromatherapy Candle",
+    "Sandalwood Meditative Candle",
+    "Ocean Breeze Candle",
+    "Lemon Citrus Candle",
+    "Cinnamon Spice Candle",
+    "Eucalyptus Refreshing Candle",
+    "Jasmine Floral Candle",
+    "Winter Snow Candle",
+  ];
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    if (value.trim() === "") {
+      setFilteredSuggestions([]);
+    } else {
+      setFilteredSuggestions(
+        candleSuggestions.filter((candle) =>
+          candle.toLowerCase().includes(value.toLowerCase())
+        )
+      );
+    }
+  };
+
+  const handleSelectSuggestion = (suggestion) => {
+    setSearchTerm(suggestion);
+    setFilteredSuggestions([]); // Hide suggestions after selection
+  };
+
   return (
     <div className="relative text-white z-20 text-lg bg-white">
       <div className="w-[90%] m-auto max-w-[1224px] flex items-center justify-between sticky top-0">
-        <Link to="/"> 
+        <div
+          className="md:hidden cursor-pointer mr-10"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="black"
+            className="size-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"
+            />
+          </svg>
+        </div>
+        <Link to="/">
           <img
             src={NavLogo}
             alt="logo"
@@ -214,63 +305,114 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <div
             className="md:hidden cursor-pointer"
           >
             <NavLink
               to="/login"
               className="text-black px-8"
-              onClick={() => setIsOpen(false)}
             >
               <span>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
-</svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                </svg>
 
               </span>
             </NavLink>
           </div>
-
           <div
             className="md:hidden cursor-pointer"
           >
             <NavLink
               to="/cart"
               className="text-black px-8"
-              onClick={() => setIsOpen(false)}
             >
               <span>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-</svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                </svg>
 
 
               </span>
             </NavLink>
           </div>
+          <div className="cursor-pointer text-yellow-600" onClick={() => setIsSearchOpen(true)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </div>
 
           <div
-            className="md:hidden cursor-pointer"
-            onClick={() => setIsOpen(!isOpen)}
+        ref={searchBarRef}
+        className={`absolute left-0 right-0 top-0 bg-white flex flex-col p-3 transition-all duration-300 transform ${
+          isSearchOpen
+            ? "opacity-100 scale-y-100"
+            : "opacity-0 scale-y-0 pointer-events-none"
+        }`}
+      >
+        {/* Search Input */}
+        <div className="flex items-center pb-2">
+          <input
+            type="text"
+            placeholder="Search by candle...🕯️"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="w-full px-4 py-2 border border-black outline-none text-black text-sm"
+          />
+          {/* Close Button */}
+          <button
+            onClick={() => {
+              setIsSearchOpen(false);
+              setSearchTerm("");
+              setFilteredSuggestions([]);
+            }}
+            className="ml-2 text-yellow-600 hover:text-black"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
-              stroke="black"
+              stroke="currentColor"
               className="size-6"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"
+                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
-          </div>
+          </button>
+        </div>
+        </div>
+
         </div>
       </div>
+      {filteredSuggestions.length > 0 && (
+          <ul className="mt-2 bg-white border border-gray-300 rounded shadow-md">
+            {filteredSuggestions.map((suggestion, index) => (
+              <li
+                key={index}
+                className="p-2 hover:bg-gray-200 cursor-pointer text-black"
+                onClick={() => handleSelectSuggestion(suggestion)}
+              >
+                {suggestion}
+              </li>
+            ))}
+          </ul>
+        )}
 
       {/* Mobile Navigation */}
       <div
