@@ -178,7 +178,7 @@ const Collection2 = () => {
         <div className="mb-3 mt-5">
             <section className="w-full flex flex-col md:flex-row md:items-center justify-center gap-y-4 p-5">
             <div className="flex flex-col items-center w-full bg-pink-200 p-3">
-                    <h2 className="text-[16px] lg:text-2xl font-semibold">
+                    <h2 className="text-[14px] lg:text-2xl font-semibold">
                         Explore our exclusive Festive collection.
                     </h2>
                 </div>

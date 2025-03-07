@@ -174,7 +174,7 @@ const Collection1 = () => {
         <div className="mb-3 mt-5">
             <section className="w-full flex flex-col md:flex-row md:items-center justify-center gap-y-4 p-5">
             <div className="flex flex-col items-center w-full bg-pink-600 p-3">
-                    <h2 className="text-[16px] lg:text-2xl font-semibold text-white">
+                    <h2 className="text-[14px] lg:text-2xl font-semibold text-white">
                         Explore our Special Velantine's Collection.
                     </h2>
                 </div>
