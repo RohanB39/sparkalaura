@@ -7,7 +7,7 @@ import Collection2 from "../ViewallCollections/Collection2/Collection2";
 import Collection3 from "../ViewallCollections/Collection3/Collection3";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
-const ProductDetail = () => {
+const ProductDetailsFromCollection = () => {
     const [selectedImage, setSelectedImage] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const location = useLocation();
@@ -235,4 +235,4 @@ const ProductDetail = () => {
     );
 };
 
-export default ProductDetail;
+export default ProductDetailsFromCollection;

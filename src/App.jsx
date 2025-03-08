@@ -22,6 +22,7 @@ import "@fontsource/work-sans";
 import WoodenCandle from "./pages/WoodenCandle";
 import WhatsAppButton from "./components/WhatsAppButton";
 import SearchResults from "./components/SearchResults";
+import ProductDetailsFromCollection from "./components/ProductInfo/ProductDetailsFromCollection";
 
 
 const App = () => {
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/pottedGarden" element={<PottedGardenDevelopment />} />
         <Route path="/viewAllCollection" element={<ViewAllCollectionMain />} />
         <Route path="/product/:id" element={<ProductDetail />} /> 
+        <Route path="/productDetailsFromCollection/:id" element={<ProductDetailsFromCollection />} /> 
         <Route path="/login" element={<Login />} /> 
         <Route path="/register" element={<Register />} /> 
         <Route path="/privacyp" element={<PrivacyPolicy />} /> 
