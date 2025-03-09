@@ -103,7 +103,7 @@ const Cart = () => {
         <>
             <div className="fixed top-0 left-0 w-full z-50 bg-white border-b shadow-sm">
                 <SmallNav />
-                <Navbar cartCount={cartItems.length}/>
+                <Navbar />
             </div>
             
             <div className="bg-gray-50 min-h-screen pb-8 px-4 mt-40">

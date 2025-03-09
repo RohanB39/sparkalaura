@@ -212,14 +212,9 @@ const Gifting = () => {
                           <span className="ml-2 text-gray-400 line-through text-[10px]">₹{product.price}</span>
                         </>
                       ) : (
-                        <span className="text-[10px]">₹{product.price}</span>
+                        <span className="text-[12px]">₹{product.price}</span>
                       )}
                     </div>
-                  </div>
-                  <div className="flex">
-                    <button className="bg-pink-100 text-[10px] mt-1 text-black cursor-pointer transition-colors duration-300 py-1 px-10 shadow">
-                      Add to Cart
-                    </button>
                   </div>
                 </div>
               </div>
