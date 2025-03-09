@@ -1,276 +1,249 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
-import { Link } from "react-router-dom";
-import emptyCart from "/images/empty-cart_15017804.png"
+import SmallNav from "../../components/SmallNav";
+import { Link, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaTrash, FaChevronLeft } from "react-icons/fa";
+import emptyCart from "/images/emptyCart.png";
+
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([
         {
             id: "1",
-            name: "Smartwatch",
-            price: 199.99,
+            name: "Bar Wax-Candles",
+            preffer: "firstPage",
+            price: 299.99,
             quantity: 1,
             imageUrl: "/ServiceImages/s1.webp",
-            totalReviews: 190,
-            discount: 10,
-            images: [
-                "/ServiceImages/s1.webp",
-                "/ServiceImages/s2.webp",
-                "/ServiceImages/s3.webp",
-                "/ServiceImages/s4.webp",
-            ],
+            totalReviews: 128,
+            discount: 15,
+            images: ["/ServiceImages/s1.webp", "/ServiceImages/s2.webp"],
             stars: "3.5",
-            description: "Premium quality leather jacket with a modern design, quilted lining, and adjustable cuffs for ultimate style and comfort.",
-            colors: ["Blue", "Black", "White"]
+            description: "Handcrafted wax candles with a rich aroma and long burn time, perfect for relaxation and decoration.",
+            category: "BestSellers",
+            collection: "Festival",
+            brand: "Sparkle Aura",
+            burnTime: "40 hours",
+            weight: "500g",
+            dimensions: "10cm x 7cm x 7cm",
+            material: "Soy Wax",
+            fragranceStrength: 4,
+            availability: "In Stock",
+            safetyInstructions: "Keep away from flammable objects. Do not leave unattended while burning.",
+            bestFor: ["Home Decor", "Relaxation", "Gifting"],
+            colors: ["Blue", "Black", "White"],
+            scents: ["Vanilla", "Lavender", "Sandalwood"]
         },
         {
             id: "2",
-            name: "Smartwatch",
-            price: 199.99,
+            name: "Mom's Gift Candles",
+            preffer: "firstPage",
+            price: 699.99,
             quantity: 1,
-            imageUrl: "/ServiceImages/s1.webp",
-            totalReviews: 190,
+            imageUrl: "/ServiceImages/s2.webp",
+            totalReviews: 256,
             discount: 10,
-            images: [
-                "/ServiceImages/s1.webp",
-                "/ServiceImages/s2.webp",
-                "/ServiceImages/s3.webp",
-                "/ServiceImages/s4.webp",
-            ],
-            stars: "3.5",
-            description: "Premium quality leather jacket with a modern design, quilted lining, and adjustable cuffs for ultimate style and comfort.",
-            colors: ["Blue", "Black", "White"]
-        },
-        {
-            id: "3",
-            name: "Smartwatch",
-            price: 199.99,
-            quantity: 1,
-            imageUrl: "/ServiceImages/s1.webp",
-            totalReviews: 190,
-            discount: 10,
-            images: [
-                "/ServiceImages/s1.webp",
-                "/ServiceImages/s2.webp",
-                "/ServiceImages/s3.webp",
-                "/ServiceImages/s4.webp",
-            ],
-            stars: "3",
-            description: "Premium quality leather jacket with a modern design, quilted lining, and adjustable cuffs for ultimate style and comfort.",
-            colors: ["Blue", "Black", "White"]
-        },
-        {
-            id: "4",
-            name: "Smartwatch",
-            price: 199.99,
-            quantity: 1,
-            imageUrl: "/ServiceImages/s1.webp",
-            totalReviews: 190,
-            discount: 10,
-            images: [
-                "/ServiceImages/s1.webp",
-                "/ServiceImages/s2.webp",
-                "/ServiceImages/s3.webp",
-                "/ServiceImages/s4.webp",
-            ],
-            stars: "3.5",
-            description: "Premium quality leather jacket with a modern design, quilted lining, and adjustable cuffs for ultimate style and comfort.",
-            colors: ["Blue", "Black", "White"]
-        },
-        {
-            id: "5",
-            name: "Smartwatch",
-            price: 199.99,
-            quantity: 1,
-            imageUrl: "/ServiceImages/s1.webp",
-            totalReviews: 190,
-            discount: 10,
-            images: [
-                "/ServiceImages/s1.webp",
-                "/ServiceImages/s2.webp",
-                "/ServiceImages/s3.webp",
-                "/ServiceImages/s4.webp",
-            ],
-            stars: "3.5",
-            description: "Premium quality leather jacket with a modern design, quilted lining, and adjustable cuffs for ultimate style and comfort.",
-            colors: ["Blue", "Black", "White"]
+            images: ["/ServiceImages/s3.webp", "/ServiceImages/s4.webp"],
+            stars: "4.2",
+            description: "Beautifully crafted candles with a soft fragrance, perfect for gifting and home decor.",
+            category: "JarCandles",
+            collection: "Festival",
+            brand: "Candle Delight",
+            burnTime: "50 hours",
+            weight: "600g",
+            dimensions: "12cm x 8cm x 8cm",
+            material: "Beeswax",
+            fragranceStrength: 5,
+            availability: "In Stock",
+            safetyInstructions: "Trim the wick to 1/4 inch before each burn. Avoid drafts.",
+            bestFor: ["Gifting", "Romantic Dinners", "Home Fragrance"],
+            colors: ["Pink", "Red", "White"],
+            scents: ["Rose", "Jasmine", "Coconut"]
         }
     ]);
 
+    const navigate = useNavigate();
+
+    // Calculate subtotal
     const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+    // Calculate discount
     const discountAmount = cartItems.reduce((acc, item) => acc + (item.price * item.quantity * item.discount) / 100, 0);
+
+    // Tax (10%)
     const tax = (subtotal - discountAmount) * 0.1;
+
+    // Store pickup fee (optional)
     const storePickupFee = 99;
+
+    // Final total calculation
     const total = subtotal - discountAmount + tax + storePickupFee;
 
+    // Handle quantity increase
+    const increaseQuantity = (id) => {
+        setCartItems(cartItems.map(item =>
+            item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        ));
+    };
+
+    // Handle quantity decrease (prevent negative values)
+    const decreaseQuantity = (id) => {
+        setCartItems(cartItems.map(item =>
+            item.id === id ? { ...item, quantity: Math.max(1, item.quantity - 1) } : item
+        ));
+    };
+
+    // Handle item removal
+    const removeItem = (id) => {
+        setCartItems(cartItems.filter(item => item.id !== id));
+    };
+
     return (
-        <section className="antialiased">
-            <Navbar />
-            <div className="mx-auto max-w-screen-xl py-10 bg-yellow-100 px-6">
-                <h2 className="text-xl text-gray-900 sm:text-2xl">Shopping Cart</h2>
-
-                {/* If Cart is Empty */}
-                {cartItems.length === 0 ? (
-                    <div className="mt-10 flex flex-col items-center">
-                        <img src={emptyCart} alt="Empty Cart" className="w-40 h-40" />
-                        <h3 className="mt-4 text-lg font-semibold text-gray-700">Your cart is empty</h3>
-                        <p className="text-gray-500">Looks like you haven't added anything yet.</p>
-                        <Link to="/viewAllCollection" className="mt-4 bg-indigo-600 text-white px-5 py-2.5 rounded-lg hover:bg-indigo-700">
-                            Continue Shopping →
-                        </Link>
-                    </div>
-                ) : (
-                    <div className="mt-6 sm:mt-8 lg:flex lg:items-start xl:gap-8">
-                        <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
-                            <div className="space-y-6">
-                                {cartItems.map((item) => (
-                                    <div key={item.id} className="border border-gray-200 bg-white p-4 shadow-sm md:p-6">
-    <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-        {/* Product Image */}
-        <a href="#" className="shrink-0 md:order-1">
-            <img className="h-20 w-20" src={item.imageUrl} alt={item.name} />
-        </a>
-
-        {/* Quantity Control & Price */}
-        <div className="flex items-center justify-between md:order-3 md:justify-end">
-            <div className="flex items-center">
-                <button
-                    className="h-5 w-5 border border-gray-300 bg-gray-100 hover:bg-gray-200 rounded-md"
-                    onClick={() =>
-                        setCartItems(
-                            cartItems.map(i =>
-                                i.id === item.id ? { ...i, quantity: Math.max(1, i.quantity - 1) } : i
-                            )
-                        )
-                    }
-                >
-                    -
-                </button>
-                <input 
-                    className="w-10 text-center text-sm font-medium text-gray-900 border-0 bg-transparent"
-                    value={item.quantity} 
-                    readOnly 
-                />
-                <button
-                    className="h-5 w-5 border border-gray-300 bg-gray-100 hover:bg-gray-200 rounded-md"
-                    onClick={() =>
-                        setCartItems(
-                            cartItems.map(i =>
-                                i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
-                            )
-                        )
-                    }
-                >
-                    +
-                </button>
+        <>
+            <div className="fixed top-0 left-0 w-full z-50 bg-white border-b shadow-sm">
+                <SmallNav />
+                <Navbar />
             </div>
-            <div className="text-end md:w-32">
-                <p className="text-base font-bold text-gray-900">Rs. {(item.price * item.quantity).toFixed(2)}</p>
-            </div>
-        </div>
-
-        {/* Product Details */}
-        <div className="w-full flex-1 space-y-4 md:order-2 md:max-w-md">
-            <a href="#" className="text-base font-medium hover:underline text-black">{item.name}</a>
             
-            {/* Description */}
-            <p className="text-sm text-gray-600">{item.description}</p>
-
-            {/* Ratings & Reviews */}
-            <div className="flex items-center space-x-2">
-                <span className="text-yellow-500">⭐ {item.stars}</span>
-                <span className="text-gray-500 text-sm">({item.totalReviews} reviews)</span>
-            </div>
-
-            {/* Discount */}
-            {item.discount > 0 && (
-                <p className="text-sm font-medium text-green-600">
-                    {item.discount}% off
-                </p>
-            )}
-
-            {/* Colors */}
-            <div className="flex space-x-2">
-                {item.colors.map((color, index) => (
-                    <span
-                        key={index}
-                        className="w-5 h-5 border rounded-full"
-                        style={{ backgroundColor: color.toLowerCase() }}
-                        title={color}
-                    ></span>
-                ))}
-            </div>
-
-            {/* Remove Button */}
-            <div className="flex items-center gap-4">
-                <button
-                    className="text-sm font-medium text-red-600 hover:underline"
-                    onClick={() => setCartItems(cartItems.filter(i => i.id !== item.id))}
-                >
-                    ❌ Remove
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Order Summary */}
-                        <div className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
-                            <div className="space-y-4 border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
-                                <p className="text-xl font-semibold text-gray-900">Order Summary</p>
-                                <div className="space-y-4">
-                                    <div className="space-y-2">
-                                        <dl className="flex justify-between">
-                                            <dt className="text-base font-normal text-gray-500">Subtotal</dt>
-                                            <dd className="text-base font-medium text-gray-900">Rs. {subtotal.toFixed(2)}</dd>
-                                        </dl>
-                                        <dl className="flex justify-between">
-                                            <dt className="text-base font-normal text-gray-500">Discount</dt>
-                                            <dd className="text-base font-medium text-green-600">- Rs. {discountAmount.toFixed(2)}</dd>
-                                        </dl>
-                                        <dl className="flex justify-between">
-                                            <dt className="text-base font-normal text-gray-500">Store Pickup</dt>
-                                            <dd className="text-base font-medium text-gray-900">Rs. {storePickupFee}</dd>
-                                        </dl>
-                                        <dl className="flex justify-between">
-                                            <dt className="text-base font-normal text-gray-500">Tax (10%)</dt>
-                                            <dd className="text-base font-medium text-gray-900">Rs. {tax.toFixed(2)}</dd>
-                                        </dl>
-                                    </div>
-                                    <dl className="flex justify-between border-t border-gray-200 pt-2">
-                                        <dt className="text-base font-bold text-gray-900">Total</dt>
-                                        <dd className="text-base font-bold text-gray-900">Rs. {total.toFixed(2)}</dd>
-                                    </dl>
-                                </div>
-                                <a href="#" className="block text-center bg-indigo-600 text-white px-5 py-2.5 rounded-lg hover:bg-indigo-700">
-                                    Proceed to Checkout
-                                </a>
-                                <div className="flex items-center justify-center gap-2">
-                                    <span className="text-sm text-gray-500">or</span>
-                                    <Link to="/viewAllCollection" className="text-sm text-indigo-600 underline">Continue Shopping →</Link>
-                                </div>
-                            </div>
-
-                            <div className="space-y-4 border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
-                                <form className="space-y-4">
-                                    <div>
-                                        <label className="mb-2 block text-sm font-medium text-gray-900">Do you have a voucher or gift card?</label>
-                                        <input type="text" className="block w-full border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900" />
-                                    </div>
-                                    <button className="block w-full bg-indigo-600 text-white px-5 py-2.5 rounded-lg hover:bg-indigo-700">
-                                        Apply Code
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+            <div className="bg-gray-50 min-h-screen pt-24 pb-8 px-4">
+                <div className="max-w-2xl mx-auto">
+                    <div className="flex items-center justify-between mb-6">
+                        <button 
+                            onClick={() => navigate(-1)}
+                            className="flex items-center gap-2 text-gray-600 hover:text-indigo-600"
+                        >
+                            <FaChevronLeft className="w-4 h-4" />
+                            <span className="font-medium">Back</span>
+                        </button>
+                        <h2 className="text-2xl font-bold text-gray-900">Your Cart</h2>
+                        <div className="w-10"></div> {/* Spacer for alignment */}
                     </div>
-                )}
+
+                    {cartItems.length === 0 ? (
+                        <div className="flex flex-col items-center text-center py-12 px-4">
+                            <img src={emptyCart} alt="Empty Cart" className="w-48 h-48 mb-6" />
+                            <h3 className="text-xl font-semibold text-gray-800 mb-2">Your cart feels lonely</h3>
+                            <p className="text-gray-500">Let's add some amazing products!</p>
+                            <div className="flex gap-2">
+                            <Link to="/login" className="text-blue-600 mb-6 underline">Login</Link><span>for better checkout experiance</span>
+                            </div>
+                            <Link 
+                                to="/viewAllCollection" 
+                                className="bg-yellow-600 text-white px-8 py-3 font-medium hover:bg-yellow-700 transition-colors"
+                            >
+                                Start Shopping
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className="space-y-6">
+                            <AnimatePresence>
+                                {cartItems.map((item) => (
+                                    <motion.div
+                                        key={item.id}
+                                        className="bg-white shadow-sm p-4"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, x: -50 }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        <div className="flex gap-4">
+                                            <img 
+                                                src={item.imageUrl} 
+                                                alt={item.name}
+                                                className="w-20 h-20 object-cover" 
+                                            />
+                                            
+                                            <div className="flex-1">
+                                                <div className="flex justify-between items-start">
+                                                    <h3 className="text-sm text-gray-900">{item.name}</h3>
+                                                    <button 
+                                                        onClick={() => removeItem(item.id)}
+                                                        className="text-gray-400 hover:text-red-500 transition-colors"
+                                                    >
+                                                        <FaTrash className="w-3 h-3" />
+                                                    </button>
+                                                </div>
+                                                
+                                                <div className="mt-2 flex items-center justify-between">
+                                                    <div className="flex items-center gap-3">
+                                                        <button 
+                                                            onClick={() => decreaseQuantity(item.id)}
+                                                            className="w-5 h-5 rounded-lg bg-gray-100 flex items-center justify-center hover:bg-gray-200"
+                                                        >
+                                                            -
+                                                        </button>
+                                                        <span className="text-sm">{item.quantity}</span>
+                                                        <button 
+                                                            onClick={() => increaseQuantity(item.id)}
+                                                            className="w-5 h-5 rounded-lg bg-gray-100 flex items-center justify-center hover:bg-gray-200"
+                                                        >
+                                                            +
+                                                        </button>
+                                                    </div>
+                                                    <p className="text-md text-yellow-600">
+                                                        Rs. {(item.price * item.quantity).toFixed(2)}
+                                                    </p>
+                                                </div>
+                                                
+                                                {item.discount > 0 && (
+                                                    <div className="mt-2 flex items-center gap-2">
+                                                        <span className="text-sm text-gray-500 line-through">
+                                                            Rs. {item.price}
+                                                        </span>
+                                                        <span className="text-[10px] bg-green-100 text-green-700 px-2 py-1">
+                                                            {item.discount}% OFF
+                                                        </span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+
+                            {/* Order Summary */}
+                            <div className="bg-white shadow-sm p-4">
+                                <h3 className="text-md font-bold mb-4">Order Summary</h3>
+                                
+                                <div className="space-y-3">
+                                    <div className="flex text-sm justify-between text-gray-600">
+                                        <span>Subtotal ({cartItems.length} items)</span>
+                                        <span>Rs. {subtotal.toFixed(2)}</span>
+                                    </div>
+                                    <div className="flex text-sm justify-between text-green-600">
+                                        <span>Discount</span>
+                                        <span>- Rs. {discountAmount.toFixed(2)}</span>
+                                    </div>
+                                    <div className="flex text-sm justify-between text-gray-600">
+                                        <span>Tax (10%)</span>
+                                        <span>Rs. {tax.toFixed(2)}</span>
+                                    </div>
+                                    <div className="flex text-sm justify-between text-gray-600">
+                                        <span>Service Fee</span>
+                                        <span>Rs. {storePickupFee.toFixed(2)}</span>
+                                    </div>
+                                    
+                                    <div className="border-t pt-3 mt-3">
+                                        <div className="flex text-sm justify-between font-bold text-gray-900">
+                                            <span>Total</span>
+                                            <span>Rs. {total.toFixed(2)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button 
+                                    className="w-full bg-yellow-600 text-white py-3.5 font-medium hover:bg-indigo-700 mt-6 transition-colors"
+                                    disabled={cartItems.length === 0}
+                                >
+                                    Proceed to Checkout
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
-        </section>
+        </>
     );
 };
 

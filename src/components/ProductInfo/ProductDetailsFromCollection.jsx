@@ -17,7 +17,6 @@ const ProductDetailsFromCollection = () => {
     const [selectedColor, setSelectedColor] = useState(product.colors[0] || "");
     const [selectedScent, setSelectedScent] = useState(product.scents[0] || "");
 
-
     useEffect(() => {
         const randomChoice = Math.random() < 0.5 ? "Collection2" : "Collection3";
         setRandomCollection(randomChoice);
@@ -25,8 +24,10 @@ const ProductDetailsFromCollection = () => {
 
     const handleBuyNow = () => {
         const selectedProductDetails = {
+            userId: "USR-123",
             SelectedProductId: product.id,
             SelectedProductName: product.name,
+            selectProductImage: product.imageUrl,
             SelectedProductDiscount: product.discount,
             selectedProductOriginalPrice: product.price,
             SelectedProductDiscountedPrice: product.discount > 0

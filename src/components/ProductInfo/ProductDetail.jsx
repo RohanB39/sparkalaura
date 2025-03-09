@@ -25,8 +25,10 @@ const ProductDetail = () => {
 
     const handleBuyNow = () => {
         const selectedProductDetails = {
+            userId: "USR-123",
             SelectedProductId: product.id,
             SelectedProductName: product.name,
+            selectProductImage: product.imageUrl,
             SelectedProductDiscount: product.discount,
             selectedProductOriginalPrice: product.price,
             SelectedProductDiscountedPrice: product.discount > 0
@@ -38,6 +40,7 @@ const ProductDetail = () => {
         };
         console.log("Selected Product Details:", selectedProductDetails);
     };
+
 
     return (
         <>
