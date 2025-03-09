@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { FiShoppingCart, FiHeart, FiStar } from "react-icons/fi";
+import { FiStar } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
 import Navbar from "../Navbar";
 import SmallNav from "../SmallNav";
 import Collection2 from "../ViewallCollections/Collection2/Collection2";
 import Collection3 from "../ViewallCollections/Collection3/Collection3";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const ProductDetailsFromCollection = () => {
     const [selectedImage, setSelectedImage] = useState(0);
@@ -16,6 +19,7 @@ const ProductDetailsFromCollection = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedColor, setSelectedColor] = useState(product.colors[0] || "");
     const [selectedScent, setSelectedScent] = useState(product.scents[0] || "");
+    const navigate = useNavigate(); // Initialize navigation
 
     useEffect(() => {
         const randomChoice = Math.random() < 0.5 ? "Collection2" : "Collection3";
@@ -24,7 +28,6 @@ const ProductDetailsFromCollection = () => {
 
     const handleBuyNow = () => {
         const selectedProductDetails = {
-            userId: "USR-123",
             SelectedProductId: product.id,
             SelectedProductName: product.name,
             selectProductImage: product.imageUrl,
@@ -39,6 +42,36 @@ const ProductDetailsFromCollection = () => {
         };
         console.log("Selected Product Details:", selectedProductDetails);
     };
+
+    const handleAddToCart = () => {
+        const userLoggedIn = localStorage.getItem("userLoggedIn");
+    
+        const selectedProductDetailsForCart = {
+            SelectedProductId: product.id,
+            SelectedProductName: product.name,
+            selectProductImage: product.imageUrl,
+            SelectedProductDiscount: product.discount,
+            selectedProductOriginalPrice: product.price,
+            SelectedProductDiscountedPrice: product.discount > 0
+                ? (product.price - (product.price * product.discount) / 100).toFixed(2)
+                : product.price,
+            SelectedProductSelectedColor: selectedColor,
+            SelectedProductSelectedScent: selectedScent,
+            SelectedProductSelectedQuantity: quantity,
+        };
+    
+        if (!userLoggedIn) {
+            const existingCart = JSON.parse(localStorage.getItem("SelectedCartProducts")) || [];
+            existingCart.push(selectedProductDetailsForCart);
+            localStorage.setItem("SelectedCartProducts", JSON.stringify(existingCart));
+    
+            toast.success("Product added to cart!", { position: "top-center", autoClose: 2000 });
+            setTimeout(() => navigate("/cart"), 2000); // Redirect after toast
+        } else {
+            console.log("User is logged in. Proceed with adding to cart.");
+        }
+    };
+    
 
     return (
         <>
@@ -213,11 +246,11 @@ const ProductDetailsFromCollection = () => {
                                 <>
                                     <button
                                         onClick={handleBuyNow}
-                                        className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+                                        className="w-full bg-yellow-600 text-white py-2 hover:bg-yellow-700"
                                     >
                                         Buy Now
                                     </button>
-                                    <button className="w-full border border-blue-600 text-blue-600 py-2 rounded-md hover:bg-blue-50">Add to Cart</button>
+                                    <button onClick={handleAddToCart} className="w-full border border-yellow-600 text-yellow-600 py-2 hover:bg-blue-50">Add to Cart</button>
                                 </>
                             ) : (
                                 <button className="w-full bg-gray-400 text-white py-2 rounded-md cursor-not-allowed">Notify Me</button>

@@ -23,12 +23,14 @@ import WoodenCandle from "./pages/WoodenCandle";
 import WhatsAppButton from "./components/WhatsAppButton";
 import SearchResults from "./components/SearchResults";
 import ProductDetailsFromCollection from "./components/ProductInfo/ProductDetailsFromCollection";
+import { ToastContainer } from "react-toastify";
 
 
 const App = () => {
   return (
     <Router>
       <ScrollToTop />
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
