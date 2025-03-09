@@ -368,7 +368,7 @@ const Navbar = () => {
                 </svg>
             </span>
             {cartCount > 0 && (
-                <span className="absolute top-4 right-0 bg-pink-500 text-white text-[8px] rounded-full w-4 h-4 flex items-center justify-center">
+                <span className="absolute top-0 right-0 bg-pink-500 text-white text-[8px] rounded-full w-4 h-4 flex items-center justify-center">
                     {cartCount}
                 </span>
             )}
