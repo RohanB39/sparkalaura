@@ -103,10 +103,10 @@ const Cart = () => {
         <>
             <div className="fixed top-0 left-0 w-full z-50 bg-white border-b shadow-sm">
                 <SmallNav />
-                <Navbar />
+                <Navbar cartCount={cartItems.length}/>
             </div>
             
-            <div className="bg-gray-50 min-h-screen pt-24 pb-8 px-4">
+            <div className="bg-gray-50 min-h-screen pb-8 px-4 mt-40">
                 <div className="max-w-2xl mx-auto">
                     <div className="flex items-center justify-between mb-6">
                         <button 
