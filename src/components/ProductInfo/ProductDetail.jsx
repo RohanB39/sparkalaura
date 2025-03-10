@@ -21,7 +21,6 @@ const ProductDetail = () => {
     const [selectedScent, setSelectedScent] = useState(product.scents[0] || "");
     const navigate = useNavigate(); // Initialize navigation
 
-
     useEffect(() => {
         const randomChoice = Math.random() < 0.5 ? "Collection2" : "Collection3";
         setRandomCollection(randomChoice);

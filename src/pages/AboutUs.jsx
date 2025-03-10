@@ -75,7 +75,7 @@ const AboutUs = () => {
 
       {/* Mission, Vision, Purpose Section */}
       <div className="w-[90%] max-w-[1224px] mx-auto mt-12">
-        <div className="aboutHeader pt-20">
+        <div className="aboutHeader">
           <div className="md:flex justify-between items-end mb-6">
             <p className="md:text-[34px] text-[24px] font-work font-normal leading-tight">
               Igniting warmth in every flame, <br /> illuminating moments with elegance.

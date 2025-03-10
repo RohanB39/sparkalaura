@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const WoodenCandle = () => {
   const products = [
@@ -154,6 +155,7 @@ const WoodenCandle = () => {
       scents: []
     },
   ];
+  const navigate = useNavigate();
 
   const calculateDiscount = (price, discount) => {
     return (price * discount) / 100;
@@ -185,6 +187,7 @@ const WoodenCandle = () => {
               <div
                 key={product.id}
                 className="bg-white shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+                onClick={() => navigate(`/product/${product.id}`, { state: { product } })}
               >
                 <div className="relative">
                   <img
