@@ -110,7 +110,7 @@ const AdminNav = () => {
             />
           </svg>
         </div>
-        <Link to="/">
+        <Link to="/adminDash">
           <img
             src={NavLogo}
             alt="logo"
@@ -136,7 +136,7 @@ const AdminNav = () => {
         </NavLink>
 
         <NavLink
-          to="/contact"
+          to="/viewProducts"
           className="text-black text-sm py-1 px-8"
           onClick={() => setIsOpen(false)}
         >
@@ -209,7 +209,7 @@ const AdminNav = () => {
         </NavLink>
 
         <NavLink
-          to="/contact"
+          to="/viewProducts"
           className="text-white text-sm py-1 px-8"
           onClick={() => setIsOpen(false)}
         >

@@ -26,6 +26,7 @@ import ProductDetailsFromCollection from "./components/ProductInfo/ProductDetail
 import { ToastContainer } from "react-toastify";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import AddProduct from "./components/AdminDashboard/AddProduct";
+import ViewProducts from "./components/AdminDashboard/ViewProducts";
 
 
 const App = () => {
@@ -55,6 +56,7 @@ const App = () => {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/adminDash" element={<AdminDashboard />} />
         <Route path="/addProduct" element={<AddProduct />} />
+        <Route path="/viewProducts" element={<ViewProducts />} />
       </Routes>
       <WhatsAppButton />
       <Footer />

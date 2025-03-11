@@ -15,6 +15,7 @@
     "@heroicons/react": "^2.2.0",
     "@material-tailwind/react": "^2.1.10",
     "@reduxjs/toolkit": "^2.6.1",
+    "@shadcn/ui": "^0.0.4",
     "@tailwindcss/vite": "^4.0.5",
     "axios": "^1.8.2",
     "framer-motion": "^12.4.1",
@@ -28,6 +29,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.5",
     "react-toastify": "^11.0.5",
+    "recharts": "^2.15.1",
     "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
