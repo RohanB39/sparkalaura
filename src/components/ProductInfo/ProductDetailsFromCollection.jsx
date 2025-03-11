@@ -19,7 +19,7 @@ const ProductDetailsFromCollection = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedColor, setSelectedColor] = useState(product.colors[0] || "");
     const [selectedScent, setSelectedScent] = useState(product.scents[0] || "");
-    const navigate = useNavigate(); // Initialize navigation
+    const navigate = useNavigate();
 
     useEffect(() => {
         const randomChoice = Math.random() < 0.5 ? "Collection2" : "Collection3";

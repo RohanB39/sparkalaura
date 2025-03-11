@@ -24,6 +24,8 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import SearchResults from "./components/SearchResults";
 import ProductDetailsFromCollection from "./components/ProductInfo/ProductDetailsFromCollection";
 import { ToastContainer } from "react-toastify";
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
+import AddProduct from "./components/AdminDashboard/AddProduct";
 
 
 const App = () => {
@@ -51,6 +53,8 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/woodenCandle" element={<WoodenCandle />} />
         <Route path="/search" element={<SearchResults />} />
+        <Route path="/adminDash" element={<AdminDashboard />} />
+        <Route path="/addProduct" element={<AddProduct />} />
       </Routes>
       <WhatsAppButton />
       <Footer />

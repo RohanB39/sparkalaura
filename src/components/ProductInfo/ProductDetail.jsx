@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
-const ProductDetail = () => {
+const ProductDetails = () => {
     const [selectedImage, setSelectedImage] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const location = useLocation();
@@ -28,7 +28,6 @@ const ProductDetail = () => {
 
     const handleBuyNow = () => {
         const selectedProductDetails = {
-            userId: "USR-123",
             SelectedProductId: product.id,
             SelectedProductName: product.name,
             selectProductImage: product.imageUrl,
@@ -45,34 +44,34 @@ const ProductDetail = () => {
     };
 
     const handleAddToCart = () => {
-            const userLoggedIn = localStorage.getItem("userLoggedIn");
-        
-            const selectedProductDetailsForCart = {
-                SelectedProductId: product.id,
-                SelectedProductName: product.name,
-                selectProductImage: product.imageUrl,
-                SelectedProductDiscount: product.discount,
-                selectedProductOriginalPrice: product.price,
-                SelectedProductDiscountedPrice: product.discount > 0
-                    ? (product.price - (product.price * product.discount) / 100).toFixed(2)
-                    : product.price,
-                SelectedProductSelectedColor: selectedColor,
-                SelectedProductSelectedScent: selectedScent,
-                SelectedProductSelectedQuantity: quantity,
-            };
-        
-            if (!userLoggedIn) {
-                const existingCart = JSON.parse(localStorage.getItem("SelectedCartProducts")) || [];
-                existingCart.push(selectedProductDetailsForCart);
-                localStorage.setItem("SelectedCartProducts", JSON.stringify(existingCart));
-        
-                toast.success("Product added to cart!", { position: "top-center", autoClose: 2000 });
-                setTimeout(() => navigate("/cart"), 2000); // Redirect after toast
-            } else {
-                console.log("User is logged in. Proceed with adding to cart.");
-            }
+        const userLoggedIn = localStorage.getItem("userLoggedIn");
+    
+        const selectedProductDetailsForCart = {
+            SelectedProductId: product.id,
+            SelectedProductName: product.name,
+            selectProductImage: product.imageUrl,
+            SelectedProductDiscount: product.discount,
+            selectedProductOriginalPrice: product.price,
+            SelectedProductDiscountedPrice: product.discount > 0
+                ? (product.price - (product.price * product.discount) / 100).toFixed(2)
+                : product.price,
+            SelectedProductSelectedColor: selectedColor,
+            SelectedProductSelectedScent: selectedScent,
+            SelectedProductSelectedQuantity: quantity,
         };
-
+    
+        if (!userLoggedIn) {
+            const existingCart = JSON.parse(localStorage.getItem("SelectedCartProducts")) || [];
+            existingCart.push(selectedProductDetailsForCart);
+            localStorage.setItem("SelectedCartProducts", JSON.stringify(existingCart));
+    
+            toast.success("Product added to cart!", { position: "top-center", autoClose: 2000 });
+            setTimeout(() => navigate("/cart"), 2000); // Redirect after toast
+        } else {
+            console.log("User is logged in. Proceed with adding to cart.");
+        }
+    };
+    
 
     return (
         <>
@@ -270,4 +269,4 @@ const ProductDetail = () => {
     );
 };
 
-export default ProductDetail;
+export default ProductDetails;

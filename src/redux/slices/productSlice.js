@@ -5,7 +5,7 @@ import axios from "axios";
 export const fetchProducts = createAsyncThunk("products/fetch", async () => {
   try {
     const response = await axios.get("http://localhost:8888/api/products/all");
-    return response.data.data; // Extract only the product list
+    return response.data.data;
   } catch (error) {
     throw new Error("Failed to fetch products");
   }
