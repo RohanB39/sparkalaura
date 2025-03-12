@@ -4,7 +4,7 @@ import axios from "axios";
 // Async Thunk for fetching products
 export const fetchProducts = createAsyncThunk("products/fetch", async () => {
   try {
-    const response = await axios.get("http://localhost:8888/api/products/all");
+    const response = await axios.get("https://sp.corely.in/api/products/all");
     return response.data.data;
   } catch (error) {
     throw new Error("Failed to fetch products");

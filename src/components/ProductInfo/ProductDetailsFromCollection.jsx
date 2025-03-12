@@ -40,7 +40,7 @@ const ProductDetailsFromCollection = () => {
             SelectedProductSelectedScent: selectedScent,
             SelectedProductSelectedQuantity: quantity,
         };
-        console.log("Selected Product Details:", selectedProductDetails);
+        navigate("/checkout", { state: selectedProductDetails });
     };
 
     const handleAddToCart = () => {

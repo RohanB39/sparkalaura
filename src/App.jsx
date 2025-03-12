@@ -27,6 +27,7 @@ import { ToastContainer } from "react-toastify";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import AddProduct from "./components/AdminDashboard/AddProduct";
 import ViewProducts from "./components/AdminDashboard/ViewProducts";
+import Checkout from "./pages/Checkout/Checkout";
 
 
 const App = () => {
@@ -57,6 +58,7 @@ const App = () => {
         <Route path="/adminDash" element={<AdminDashboard />} />
         <Route path="/addProduct" element={<AddProduct />} />
         <Route path="/viewProducts" element={<ViewProducts />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <WhatsAppButton />
       <Footer />

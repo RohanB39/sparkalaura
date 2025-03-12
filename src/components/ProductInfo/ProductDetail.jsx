@@ -28,7 +28,7 @@ const ProductDetails = () => {
 
     const handleBuyNow = () => {
         const selectedProductDetails = {
-            SelectedProductId: product.id,
+            SelectedProductId: product.productId,
             SelectedProductName: product.name,
             selectProductImage: product.imageUrl,
             SelectedProductDiscount: product.discount,
@@ -40,7 +40,7 @@ const ProductDetails = () => {
             SelectedProductSelectedScent: selectedScent,
             SelectedProductSelectedQuantity: quantity,
         };
-        console.log("Selected Product Details:", selectedProductDetails);
+        navigate("/checkout", { state: selectedProductDetails });
     };
 
     const handleAddToCart = () => {

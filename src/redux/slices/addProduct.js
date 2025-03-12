@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "http://localhost:8888/api/products";
+const API_URL = "https://sp.corely.in/api/products/add";
 
 export const addProduct = createAsyncThunk("products/add", async (productData, { rejectWithValue }) => {
   try {
