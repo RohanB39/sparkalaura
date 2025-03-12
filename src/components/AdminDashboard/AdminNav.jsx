@@ -140,7 +140,7 @@ const AdminNav = () => {
           className="text-black text-sm py-1 px-8"
           onClick={() => setIsOpen(false)}
         >
-          View Products
+          View, Edit Products
         </NavLink>
 
         <NavLink
@@ -213,7 +213,7 @@ const AdminNav = () => {
           className="text-white text-sm py-1 px-8"
           onClick={() => setIsOpen(false)}
         >
-          View Products
+          View, Edit Products
         </NavLink>
 
         <NavLink

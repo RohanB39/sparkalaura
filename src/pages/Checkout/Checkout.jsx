@@ -137,7 +137,7 @@ const Checkout = () => {
             },
         };
         try {
-            const { data } = await axios.post("http://localhost:8888/api/order/createOrder", orderData);
+            const { data } = await axios.post("https://sp.corely.in/api/order/createOrder", orderData);
             const options = {
                 key: "rzp_test_39SN1CVZ2cK38s",
                 amount: data.amount * 100,
@@ -147,7 +147,7 @@ const Checkout = () => {
                 image: product.selectProductImage,
                 order_id: data.id,
                 handler: async function (response) {
-                    await axios.post("http://localhost:8888/api/order/verify-payment", response);
+                    await axios.post("https://sp.corely.in/api/order/verify-payment", response);
                     toast.success("Payment Successfull..!", { position: "top-center", autoClose: 2000 });
                 },
                 prefill: { name: user.name, email: user.email, contact: user.phone },
